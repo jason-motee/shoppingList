@@ -12,9 +12,20 @@
         <button type="submit">Add</button>
     </form>
     <script type="text/javascript">
+
+    let groceries = [];
+    document.querySelector('#addGroceryForm').addEventListener('submit', addGrocery);
     
-    
-    
+    function addGrocery (event) {
+        event.preventDefault();
+
+        let groceryInput = document.querySelector('#groceryInput');
+        groceries.push(groceryInput.value);
+        groceryInput.value = "";
+
+        console.log(groceries);
+    }
+
     </script>
 </body>
 </html>
