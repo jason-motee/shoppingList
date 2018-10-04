@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+
     <form method="post" id="addGroceryForm">
         <input id="groceryInput" type="text" placeholder="New grocery">
         <button type="submit">Add</button>
@@ -15,17 +16,34 @@
 
     let groceries = [];
     document.querySelector('#addGroceryForm').addEventListener('submit', addGrocery);
-    
-    function addGrocery (event) {
+
+    function addGrocery(event) {
         event.preventDefault();
 
         let groceryInput = document.querySelector('#groceryInput');
         groceries.push(groceryInput.value);
         groceryInput.value = "";
 
-        console.log(groceries);
+        updateGroceries();
+    }
+
+    function updateGroceries() {
+        let groceriesElement = document.querySelector('#groceries');
+        groceriesElement.innerHTML = '';
+
+        for (let i = 0; i < groceries.length; i++){
+            var grocery = groceries[i];
+            groceriesElement.innerHTML += '<li>' + grocery + '<button onclick="deleteGrocery(this);">Delete</button></li>'
+        }
+    }
+
+    function deleteGrocery(currentEl){
+        currentEl.parentNode.parentNode.removeChild(currentEl.parentNode);
     }
 
     </script>
+
+    <ul id="groceries">
+    </ul>
 </body>
 </html>
